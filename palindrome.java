@@ -1,41 +1,52 @@
-import java.util.Scanner;
-//import java.util.Arrays;
+//Write a java program that will determine whether an input string is palindrome or not. A palindrome is a type of word play in which a word or phrase spelled forward is the same word or phrase spelled backward.
+//You will use Stack ADT (Advance Data Structure). Use of other ADTS or predefined methods to test palindrome will give you a zero score. You must create and use your own algorithm.
+//Example of palindrome:
+//1. radar
+//2. civic
+//3. racecar
+//4. kayak
+
+import java.util.LinkedList; //importing linked list
+import java.util.Queue; //importing queue
+import java.util.Stack; //importing stack ADT
+import java.util.Scanner; //importing scanner
+
 public class Palindrome 
-{ // main method begins execution
-	public static void main(String[] args) 
-	{ // main method begins execution
-		Scanner console = new Scanner(System.in); // create Scanner object
-		String input; // declare input
-		
-		System.out.println("Palindrome"); // print out the title
-		System.out.println(); // print out a blank line
-		System.out.print("Enter a string, or q to quit: "); // prompt user for input
-		input = console.nextLine(); // read input
-		while (!input.equals("q")) { // while input is not q
-			if (isPalindrome(input)) // if input is a palindrome
-				System.out.println(input + " is a palindrome."); // print out that it is a palindrome
-			else // otherwise
-				System.out.println(input + " is NOT a palindrome."); // print out that it is not a palindrome
-			
-			System.out.println(); // print out a blank line
-			System.out.print("Enter a string, or q to quit: "); // prompt user for input
-			input = console.nextLine(); // read input
-		}
+{
+   public static void main(String[ ] args) // main method
+   { 
+	Scanner input = new Scanner(System.in); //creating scanner
+	String inputString; //declaring input string
+      	System.out.print("Enter Your input string: "); //prompting user to enter input string
+        inputString = input.next( ); //accepting input string
+
+	if (isPalindrome( inputString )){ //calling isPalindrome method
+		System.out.println("That is a palindrome."); //printing that it is a palindrome
 	}
-	public static boolean isPalindrome(String s) // method to determine if a string is a palindrome
-	{
-		s.toLowerCase(); // convert to lower case
-		if (s.length() < 2) // if the string is less than 2 characters
-			return true; // return true
-		if (s.charAt(0) == s.charAt(s.length() - 1)) // if the first and last characters are the same
-		{
-			s = s.substring(1, s.length() - 1); // remove the first and last characters
-			if (isPalindrome(s)) // if the string is a palindrome
-				return true; // return true
-			else // otherwise
-				return false; // otherwise return false
-		}                                           
-		else // otherwise
-			return false; // return false
-	}
+	else{
+		System.out.println("That is not a palindrome."); //printing that it is not a palindrome
+      	}
+   }
+
+   public static boolean isPalindrome(String input)  //method to determine if input string is palindrome
+   {   
+      Queue<Character> q = new LinkedList<Character>( ); //creating queue
+      Stack<Character> s = new Stack<Character>( ); //creating stack
+      char letter; //declaring letter
+      int i; //declaring i
+      
+      for (i = 0; i < input.length( ); i++) //for loop to add each letter of input string to queue
+      {
+	 letter = input.charAt(i); //assigning letter to each letter of input string
+         q.add(letter); //adding letter to queue
+         s.push(letter); //adding letter to stack
+      }    
+      while (!q.isEmpty( )) //while loop to remove each letter of input string from queue
+      {
+         if (q.remove( ) != s.pop( )) //if statement to remove each letter of input string from queue and stack
+           return false; //returning false if letter does not match
+      }
+      return true; //returning true if letter matches
+   }
+    
 }
