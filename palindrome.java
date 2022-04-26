@@ -6,47 +6,25 @@
 //3. racecar
 //4. kayak
 
-import java.util.LinkedList; //importing linked list
-import java.util.Queue; //importing queue
-import java.util.Stack; //importing stack ADT
-import java.util.Scanner; //importing scanner
+import java.util.Stack;
+import java.util.Scanner;
 
-public class Palindrome 
-{
-   public static void main(String[ ] args) // main method
-   { 
-	Scanner input = new Scanner(System.in); //creating scanner
-	String inputString; //declaring input string
-      	System.out.print("Enter Your input string: "); //prompting user to enter input string
-        inputString = input.next( ); //accepting input string
-
-	if (isPalindrome( inputString )){ //calling isPalindrome method
-		System.out.println("That is a palindrome."); //printing that it is a palindrome
-	}
-	else{
-		System.out.println("That is not a palindrome."); //printing that it is not a palindrome
-      	}
-   }
-
-   public static boolean isPalindrome(String input)  //method to determine if input string is palindrome
-   {   
-      Queue<Character> q = new LinkedList<Character>( ); //creating queue
-      Stack<Character> s = new Stack<Character>( ); //creating stack
-      char letter; //declaring letter
-      int i; //declaring i
-      
-      for (i = 0; i < input.length( ); i++) //for loop to add each letter of input string to queue
-      {
-	 letter = input.charAt(i); //assigning letter to each letter of input string
-         q.add(letter); //adding letter to queue
-         s.push(letter); //adding letter to stack
-      }    
-      while (!q.isEmpty( )) //while loop to remove each letter of input string from queue
-      {
-         if (q.remove( ) != s.pop( )) //if statement to remove each letter of input string from queue and stack
-           return false; //returning false if letter does not match
-      }
-      return true; //returning true if letter matches
-   }
-    
+public class Palindrome {
+    public static void main(String[] args)
+    {                
+        Stack <Character> stck3 = 
+        new Stack<Character>();
+        Scanner input = 
+        new Scanner(System.in);
+        String res = "";        
+        System.out.println("Please enter a String: ");
+        String inp = input.next();
+        for (int i = 0; i < inp.length(); i++)             
+        stck3.push(inp.charAt(i)); while(!stck3.empty())
+        res += stck3.pop();
+        if(inp.equals(res))
+            System.out.println("This is a palindrome");
+        else
+            System.out.println("This is not a palindrome");        
+    }
 }
